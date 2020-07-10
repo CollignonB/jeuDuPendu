@@ -9,6 +9,7 @@ const wordList = [
 
 // Function Definition
 
+<<<<<<< HEAD
 // Generate a random number and choice a word
 function generateComputerChoice(){
     let randomIndex = Math.floor(Math.random() * Math.floor(4));
@@ -88,6 +89,20 @@ function main(){
     } else if(!gameNotOver){
         alert(`Bravo vous avez gagné!`);
     }
+=======
+function generateComputerChoice(){
+    let randomIndex = Math.floor(Math.random() * Math.floor(5));
+    let computerChoice = wordList[0];
+    return computerChoice;
+}
+
+
+function main(){
+    alert("Bonjour, vous allez jouer au jeu du pendu");
+    let userChoice = prompt("Choisissez une lettre : ");
+
+    console.log(userChoice);
+>>>>>>> 4769aee088ddd6ead8828f9d48917785d24bfcf2
 
 }
 
