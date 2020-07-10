@@ -19,8 +19,6 @@ function generateComputerChoice(){
 // tranform a word into an array 
 function transformChain(word){
     let table = word.split('');
-    console.log(" taille de la chaine "+table.length);
-    console.log(`${word} devient ${table}`);
     return table;    
 
 }
@@ -30,7 +28,6 @@ function chainTounderscore(word){
     for (let i = 0; i < word.length; i ++){
         under[i] = "_";
     }
-    console.log(under);
     return under;
 }
 
@@ -41,48 +38,55 @@ function checkUserInput(letter){
     return letter;
 }
 
-function isInChain(table, userChoice){
-    let result = table;
-    console.log(table);
-    console.log("avant la boucle");
-    for (let i = 0; i < result.length; i ++){
-        if (result[i] === "_" && result[i] !== userChoice){
-            result[i] = userChoice;
-        }
-    }
-    console.log("bite");
-    console.log(table);
-    return result.join('');
-}
 
 function isUnderLeft (underChain){
     let underCount = 0;
     for (const letter of underChain) {
         if (letter === "_"){
             underCount ++;
-            console.log(underCount);
         }      
     }
-    return underCount === 0 ? true : false;
+    return underCount === 0 ?  false : true;
 }
 
 
 function main(){
 
     alert("Bonjour, vous allez jouer au jeu du pendu");
-
+    let points = 7;
+    let compteur = 0;
     let computerChoice = generateComputerChoice();
     const table = transformChain(computerChoice);
-    console.log(table);
+    console.log(computerChoice);
     let underChain = chainTounderscore(computerChoice);
     let userChoice;
-    // isUnderLeft(underChain);
-    while(underChain !== computerChoice){
-        userChoice = checkUserInput(prompt("Le mot a trouver : "+underChain +"\nChoisissez une lettre : "));
-        //console.log(`user input = ${userChoice}`);
-        underChain = isInChain(table, userChoice);
-        console.log(underChain);
-        console.log("c'est table : " + table);
+
+    let gameNotOver = isUnderLeft(underChain);
+
+    while(points > 0 && gameNotOver){
+        userChoice = checkUserInput(prompt(`Le mot a trouver : ${underChain}\n il vous reste ${points} erreurs possible(s)\n Entrez une lettre : ` ));
+
+        for (let i = 0; i < table.length; i ++){
+            if (userChoice === table[i]){
+                underChain[i] = userChoice;
+                compteur ++;
+            }
+        }
+        if(compteur < 1 ){
+            points --;
+            compteur = 0;
+        }else{
+            compteur = 0;
+        }
+        gameNotOver = isUnderLeft(underChain);
+
+        
+    }
+    if(points === 0){
+        alert(`Vous avez perdu, le mot était ${computerChoice}`);
+
+    } else if(!gameNotOver){
+        alert(`Bravo vous avez gagné!`);
     }
 
 }
