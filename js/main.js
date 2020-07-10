@@ -51,16 +51,20 @@ function isUnderLeft (underChain){
 
 function gameInterface (){
 
-    alert('bonjour');
-    console.log(interfaceChoice);
+    let interfaceChoice = prompt("Choisissez : \nj : jouer\nr : voir les règles\nq : quitter");
 
-    if(interfaceChoice === 'j'){
-        main();
-    }else if (interfaceChoice === 'r'){
-        alert("Voici les règles :");
-        gameInterface();
-    }else if (interfaceChoice === 'q'){
-        alert("Au revoir ")
+    while(interfaceChoice){
+        if(interfaceChoice === 'j'){
+            main();
+        }else if (interfaceChoice === 'r'){
+            alert("Voici les règles :");
+            gameInterface();
+        }else if (interfaceChoice === 'q'){
+            alert("Au revoir ");
+            exit();
+        }else{
+            interfaceChoice = prompt("Choisissez : \nj : jouer\nr : voir les règles\nq : quitter");
+        }
     }
 }
 function main(){
@@ -97,11 +101,12 @@ function main(){
     }
     if(points === 0){
         alert(`Vous avez perdu, le mot était ${computerChoice}`);
+        gameInterface();
 
     } else if(!gameNotOver){
         alert(`Bravo vous avez gagné!`);
+        gameInterface();
     }
 
 }
 gameInterface();
-main();
