@@ -50,8 +50,9 @@ function isUnderLeft (underChain){
 }
 
 function gameInterface (){
-    console.log("prout");
-    let interfaceChoice = prompt(`Veuillez choisir : \n j : jouer\n r : règles\n q : quitter `);
+
+    alert('bonjour');
+    console.log(interfaceChoice);
 
     if(interfaceChoice === 'j'){
         main();
