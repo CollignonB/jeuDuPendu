@@ -9,7 +9,6 @@ const wordList = [
 
 // Function Definition
 
-<<<<<<< HEAD
 // Generate a random number and choice a word
 function generateComputerChoice(){
     let randomIndex = Math.floor(Math.random() * Math.floor(4));
@@ -50,7 +49,19 @@ function isUnderLeft (underChain){
     return underCount === 0 ?  false : true;
 }
 
+function gameInterface (){
+    console.log("prout");
+    let interfaceChoice = prompt(`Veuillez choisir : \n j : jouer\n r : règles\n q : quitter `);
 
+    if(interfaceChoice === 'j'){
+        main();
+    }else if (interfaceChoice === 'r'){
+        alert("Voici les règles :");
+        gameInterface();
+    }else if (interfaceChoice === 'q'){
+        alert("Au revoir ")
+    }
+}
 function main(){
 
     alert("Bonjour, vous allez jouer au jeu du pendu");
@@ -89,21 +100,7 @@ function main(){
     } else if(!gameNotOver){
         alert(`Bravo vous avez gagné!`);
     }
-=======
-function generateComputerChoice(){
-    let randomIndex = Math.floor(Math.random() * Math.floor(5));
-    let computerChoice = wordList[0];
-    return computerChoice;
-}
-
-
-function main(){
-    alert("Bonjour, vous allez jouer au jeu du pendu");
-    let userChoice = prompt("Choisissez une lettre : ");
-
-    console.log(userChoice);
->>>>>>> 4769aee088ddd6ead8828f9d48917785d24bfcf2
 
 }
-
+gameInterface();
 main();
